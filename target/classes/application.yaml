@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: big-event
+  datasource:
+    # url: jdbc:mysql://10.249.57.170:3306/big_event?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://10.249.57.170:3306/big_event
+    username: root
+    password: 13549804688.rl
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      # 单个文件上限，默认 1MB（1048576 字节），就是你踩到的那个限制
+      max-file-size: 10MB
+      # 整个请求上限（多个文件 + 表单字段之和），默认 10MB
+      max-request-size: 20MB
+  # Redis 配置必须放在 spring.data.redis 下，Spring Boot 才会读取；
+  # 之前写在顶层的 redis: 是不被识别的自定义 key，于是回落到默认 localhost:6379
+  data:
+    redis:
+      host: 10.249.57.170
+      port: 6379
+      password: 13549804688.rl
+      # database: 0
+
+# mybatis:
+#   mapper-locations: classpath:mapper/*.xml
+#   type-aliases-package: com.itheima.pojo
+
+server:
+  port: 8080
+  tomcat:
+    # 超过大小限制时把剩余请求体读完再丢弃，否则客户端可能收到 Connection reset 而不是正常报错
+    max-swallow-size: -1
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+file:
+  basePath: /Users/hoshino/Documents/web/avatar
+
+aliyun:
+  oss:
+    endpoint: https://oss-cn-shenzhen.aliyuncs.com
+    region: cn-shenzhen
+    bucket: hosh1no
+
